@@ -4,8 +4,12 @@ import MyLoader from "../MyLoader";
 import FolderIcon from "@mui/icons-material/Folder";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import ImageIcon from "@mui/icons-material/Image";
+import { useDispatch, useSelector } from "react-redux";
 
 function MyMain() {
+  const dispatch = useDispatch();
+  const currentPath = useSelector((state) => state.path);
+
   const [allFiles, setAllFiles] = useState([]);
   const [directories, setDirectories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +35,15 @@ function MyMain() {
     fetchData();
   }, []);
 
-  return <div>{isLoading ? <MyLoader /> : ""}</div>;
+  return (
+    <div>
+      {isLoading ? (
+        <MyLoader />
+      ) : (
+        <h1 className="text-light">{currentPath}aa</h1>
+      )}
+    </div>
+  );
 }
 
 export default MyMain;
