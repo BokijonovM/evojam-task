@@ -1,27 +1,20 @@
 import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import AcUnitIcon from "@mui/icons-material/AcUnit";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MyMain from "./components/main/MyMain";
+import MyDetail from "./components/details/MyDetail";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-          <AcUnitIcon />
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<MyMain />} />
+          <Route path="/details/:id" element={<MyDetail />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
