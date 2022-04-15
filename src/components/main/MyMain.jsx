@@ -30,7 +30,6 @@ function MyMain() {
         setIsLoading(false);
         setDirectories(data.directories);
         dispatch(setPrevPathNameAction("root"));
-        console.log(data);
       } else {
         console.log("fetch data failed!");
       }

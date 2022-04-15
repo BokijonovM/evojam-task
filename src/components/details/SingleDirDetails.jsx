@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import FolderIcon from "@mui/icons-material/Folder";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
@@ -23,7 +23,6 @@ function SingleDirDetails() {
         let data = await res.json();
         setIsLoading(false);
         setSingleDir(data);
-        console.log("dirrr", data);
       } else {
         console.log("fetch single data error!");
       }

@@ -28,7 +28,7 @@ function MyDetail() {
         let data = await res.json();
         setIsLoading(false);
         setSingleDir(data);
-        console.log("dirrr", data);
+
         dispatch(setCurrentPathNameAction(`${data.name}`));
       } else {
         console.log("fetch single data error!");
