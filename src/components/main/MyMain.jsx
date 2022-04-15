@@ -6,8 +6,11 @@ import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import ImageIcon from "@mui/icons-material/Image";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { setCurrentPathNameAction } from "../../redux/actions/action.js";
 
 function MyMain() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentPath = useSelector((state) => state.path);
   const [rootName, setRootName] = useState("root");
@@ -54,7 +57,11 @@ function MyMain() {
         >
           {directories.map((dir) => {
             return (
-              <Col className="my-2 p-0 all-col-main" key={dir.id}>
+              <Col
+                className="my-2 p-0 all-col-main"
+                key={dir.id}
+                onClick={() => navigate(`details/${dir.id}`)}
+              >
                 <FolderIcon className="dir-icon" />
                 <h6 className="text-light">{dir.name}</h6>
               </Col>
