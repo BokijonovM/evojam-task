@@ -5,10 +5,12 @@ import FolderIcon from "@mui/icons-material/Folder";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import ImageIcon from "@mui/icons-material/Image";
 import { useDispatch, useSelector } from "react-redux";
+import { Row, Col } from "react-bootstrap";
 
 function MyMain() {
   const dispatch = useDispatch();
   const currentPath = useSelector((state) => state.path);
+  const [rootName, setRootName] = useState("root");
 
   const [allFiles, setAllFiles] = useState([]);
   const [directories, setDirectories] = useState([]);
@@ -36,11 +38,41 @@ function MyMain() {
   }, []);
 
   return (
-    <div>
+    <div className="mx-5">
+      <h4 style={{ textAlign: "start" }} className="text-light ml-4 mt-4">
+        {currentPath}
+      </h4>
+      <h4 style={{ textAlign: "start" }} className="text-light ml-4 mt-4">
+        {rootName}
+      </h4>
       {isLoading ? (
         <MyLoader />
       ) : (
-        <h1 className="text-light">{currentPath}aa</h1>
+        <Row
+          md={6}
+          className=" my-3 align-items-start align-content-start justify-content-start"
+        >
+          {directories.map((dir) => {
+            return (
+              <Col className="my-2 p-0 all-col-main" key={dir.id}>
+                <FolderIcon className="dir-icon" />
+                <h6 className="text-light">{dir.name}</h6>
+              </Col>
+            );
+          })}
+          {allFiles.map((file, i) => {
+            return (
+              <Col className="my-2 p-0 all-col-main" key={i}>
+                {file.name.slice(-3) === "jpg" ? (
+                  <ImageIcon className="jpg-icon" />
+                ) : (
+                  <InsertDriveFileIcon className="other-icon" />
+                )}
+                <h6 className="text-light all-files-name-h6">{file.name}</h6>
+              </Col>
+            );
+          })}
+        </Row>
       )}
     </div>
   );
