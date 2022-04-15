@@ -1,0 +1,24 @@
+.jpg-icon,
+.dir-icon,
+.other-icon {
+  color: white !important;
+  font-size: 40px !important;
+}
+.all-files-name-h6 {
+  white-space: nowrap;
+  width: 75px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.all-col-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: flex-start;
+  flex-direction: column;
+}
+.all-col-main:hover {
+  background-color: rgb(56, 53, 53);
+  cursor: pointer;
+  border-radius: 5px;
+}
