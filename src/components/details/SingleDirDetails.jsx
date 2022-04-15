@@ -54,7 +54,7 @@ function SingleDirDetails() {
             <span
               className="root-click-event"
               onClick={() => {
-                navigate("/");
+                navigate(-1);
               }}
             >
               {currentPath}
@@ -66,20 +66,6 @@ function SingleDirDetails() {
             md={6}
             className=" my-3 align-items-start align-content-start justify-content-start"
           >
-            {singleDir.directories.map((dir) => {
-              return (
-                <a
-                  href={`/details/dir/${dir.id}`}
-                  key={dir.id}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Col className="my-2 p-0 all-col-main">
-                    <FolderIcon className="dir-icon" />
-                    <h6 className="text-light">{dir.name}</h6>
-                  </Col>
-                </a>
-              );
-            })}
             {singleDir.files.map((file, i) => {
               return (
                 <Col className="my-2 p-0 all-col-main" key={i}>
