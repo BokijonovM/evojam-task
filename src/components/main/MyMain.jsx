@@ -13,6 +13,7 @@ function MyMain() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentPath = useSelector((state) => state.path.current);
+  const prevPath = useSelector((state) => state.path.prevPath);
 
   const [allFiles, setAllFiles] = useState([]);
   const [directories, setDirectories] = useState([]);
@@ -28,7 +29,7 @@ function MyMain() {
         setAllFiles(data.files);
         setIsLoading(false);
         setDirectories(data.directories);
-        dispatch(setPrevPathNameAction(currentPath));
+        dispatch(setPrevPathNameAction("root"));
         console.log(data);
       } else {
         console.log("fetch data failed!");
@@ -45,7 +46,7 @@ function MyMain() {
   return (
     <div className="mx-5">
       <h4 style={{ textAlign: "start" }} className="text-light ml-4 mt-4">
-        {currentPath}
+        {prevPath}
       </h4>
 
       {isLoading ? (
