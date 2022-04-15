@@ -1,4 +1,4 @@
-import { SET_CURRENT_PATH } from "../actions/action.js";
+import { SET_CURRENT_PATH, SET_PREV_PATH } from "../actions/action.js";
 import { initialState } from "../store/store.js";
 
 export const CurrentPathREducer = (state = initialState.path, action) => {
@@ -6,7 +6,13 @@ export const CurrentPathREducer = (state = initialState.path, action) => {
     case SET_CURRENT_PATH: {
       return {
         ...state,
-        path: action.payload,
+        current: action.payload,
+      };
+    }
+    case SET_PREV_PATH: {
+      return {
+        ...state,
+        prevPath: action.payload,
       };
     }
 

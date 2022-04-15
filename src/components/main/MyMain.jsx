@@ -7,17 +7,17 @@ import ImageIcon from "@mui/icons-material/Image";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { setCurrentPathNameAction } from "../../redux/actions/action.js";
+import { setPrevPathNameAction } from "../../redux/actions/action.js";
 
 function MyMain() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const currentPath = useSelector((state) => state.path);
-  const [rootName, setRootName] = useState("root");
+  const currentPath = useSelector((state) => state.path.current);
 
   const [allFiles, setAllFiles] = useState([]);
   const [directories, setDirectories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
   const fetchData = async () => {
     try {
       let res = await fetch(
@@ -28,6 +28,7 @@ function MyMain() {
         setAllFiles(data.files);
         setIsLoading(false);
         setDirectories(data.directories);
+        dispatch(setPrevPathNameAction(currentPath));
         console.log(data);
       } else {
         console.log("fetch data failed!");
@@ -36,6 +37,7 @@ function MyMain() {
       console.log(error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -45,9 +47,7 @@ function MyMain() {
       <h4 style={{ textAlign: "start" }} className="text-light ml-4 mt-4">
         {currentPath}
       </h4>
-      <h4 style={{ textAlign: "start" }} className="text-light ml-4 mt-4">
-        {rootName}
-      </h4>
+
       {isLoading ? (
         <MyLoader />
       ) : (

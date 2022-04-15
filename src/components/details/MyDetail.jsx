@@ -12,7 +12,8 @@ function MyDetail() {
   const [singleDir, setSingleDir] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const currentPath = useSelector((state) => state.path);
+  const currentPath = useSelector((state) => state.path.current);
+  const prevPath = useSelector((state) => state.path.prevPath);
 
   const fetchSingleDir = async () => {
     try {
@@ -24,7 +25,7 @@ function MyDetail() {
         setIsLoading(false);
         setSingleDir(data);
         console.log(data);
-        // dispatch(setCurrentPathNameAction(`root/${data.name}`));
+        dispatch(setCurrentPathNameAction(`root/${data.name}`));
       } else {
         console.log("fetch single data error!");
       }
@@ -49,7 +50,7 @@ function MyDetail() {
                 navigate("/");
               }}
             >
-              {currentPath}
+              {prevPath}
             </span>
             <span className="mx-1">/</span>
             <span>{singleDir.name}</span>

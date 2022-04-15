@@ -9,7 +9,10 @@ const aComposeFunctionThatAlwaysWorks =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const initialState = {
-  path: "root",
+  path: {
+    prevPath: "",
+    current: "root",
+  },
 };
 
 const persistConfig = {
